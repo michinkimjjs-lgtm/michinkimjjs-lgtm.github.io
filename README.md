@@ -1,0 +1,1 @@
+# michinkimjjs-lgtm.github.io
