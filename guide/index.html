@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 쇼츠 팩토리 사용 설명서</title>
+<meta name="description" content="AI 쇼츠 팩토리를 처음 쓰는 분을 위한 설치·계정 연결·영상 만들기 안내">
+<link rel="stylesheet" href="guide.css"></head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <p class="kicker">처음 쓰는 분을 위한 안내</p>
+    <h1>AI 쇼츠 팩토리 사용 설명서</h1>
+    <p class="lead">설치부터 계정 연결, 첫 영상 올리기까지 순서대로 따라 하면 됩니다. 사진은 실제로 연결하면서 찍은 화면입니다(개인정보는 회색으로 가렸습니다).</p>
+    <p class="muted">마지막 고침: 2026년 11월 14일 · 구글·메타·네이버 화면은 자주 바뀝니다. 이름이 조금 달라도 비슷한 메뉴를 찾으면 됩니다.</p>
+  </div>
+</header>
+
+<main class="wrap">
+<nav class="toc">
+  <b>차례</b>
+  <ol start="0">
+    <li><a href="#s0">시작 전에 준비할 것</a></li>
+    <li><a href="#s1">설치하고 켜기</a></li>
+    <li><a href="#s2">AI 연결 (Claude Code 또는 ChatGPT Codex)</a></li>
+    <li><a href="#s3">공시 키 받기 (DART) — 꼭 필요</a></li>
+    <li><a href="#s4">뉴스 키 받기 (네이버) — 선택</a></li>
+    <li><a href="#s5">시세 키 받기 (공공데이터포털) — 선택</a></li>
+    <li><a href="#s6">유튜브 연결</a></li>
+    <li><a href="#s7">인스타그램·페이스북 연결</a></li>
+    <li><a href="#s8">첫 영상 만들고 올리기</a></li>
+    <li><a href="#s9">설정 알아두기</a></li>
+    <li><a href="#s10">막힐 때 (실제로 자주 막힌 곳)</a></li>
+    <li><a href="#s11">꼭 지켜 주세요 (안전 수칙)</a></li>
+  </ol>
+</nav>
+
+<section id="s0">
+  <h2><span class="no">0</span>시작 전에 준비할 것</h2>
+  <table class="need">
+    <tr><th>무엇</th><th>왜 필요한가</th><th>꼭?</th></tr>
+    <tr><td>Windows PC</td><td>프로그램이 Windows용입니다</td><td class="must">필수</td></tr>
+    <tr><td>Claude 유료 요금제 <i>또는</i> ChatGPT 계정</td><td>AI가 대본을 씁니다. 사용량은 <b>본인 요금제</b>에서 차감됩니다</td><td class="must">둘 중 하나 필수</td></tr>
+    <tr><td>OpenDART 인증키</td><td>오늘의 공시를 불러옵니다</td><td class="must">필수</td></tr>
+    <tr><td>구글(유튜브) 계정</td><td>유튜브 쇼츠 자동 업로드</td><td>원할 때</td></tr>
+    <tr><td>인스타그램 + 페이스북 계정</td><td>릴스 자동 업로드</td><td>원할 때</td></tr>
+    <tr><td>네이버·공공데이터포털 키</td><td>뉴스 화제·전일 급등락 탭</td><td>원할 때</td></tr>
+  </table>
+  <p class="tip">처음에는 <b>1 → 2 → 3 → 8</b>만 해도 영상을 만들 수 있습니다. 업로드 연결(6·7)은 익숙해진 뒤에 해도 됩니다.</p>
+</section>
+
+<section id="s1">
+  <h2><span class="no">1</span>설치하고 켜기</h2>
+  <ol class="steps">
+    <li>받은 <code>AIShortsFactory-windows.zip</code>을 마우스 오른쪽 버튼으로 눌러 <b>모두 압축 풀기</b>를 합니다. 바탕화면이나 문서 폴더처럼 찾기 쉬운 곳에 풉니다.
+      <div class="warn">압축을 풀지 않고 zip 안에서 바로 실행하면 제대로 동작하지 않습니다.</div></li>
+    <li>풀린 <code>AIShortsFactory</code> 폴더 안의 <b>AIShortsFactory.exe</b>를 두 번 누릅니다.</li>
+    <li><b>"Windows의 PC 보호"</b> 파란 창이 뜨면 <b>추가 정보</b> → <b>실행</b>을 누릅니다. 스토어에 올리지 않은 개인 프로그램이라 처음 한 번 뜨는 정상 경고입니다.</li>
+    <li>새 버전을 받으면 예전 폴더를 지우고 새로 풀면 됩니다. <b>설정과 연결 정보는 그대로 남습니다.</b></li>
+  </ol>
+  <figure><img src="img/app-main.jpg" alt="AI 쇼츠 만들기 첫 화면" loading="lazy"><figcaption>처음 켠 화면. 위쪽 주황색 "AI 연동이 필요합니다"는 다음 단계(2)를 하면 사라집니다.</figcaption></figure>
+</section>
+
+<section id="s2">
+  <h2><span class="no">2</span>AI 연결 (Claude Code 또는 ChatGPT Codex)</h2>
+  <p>프로그램이 직접 AI에 로그인하지 않습니다. 내 PC에 <b>공식 Claude Code나 ChatGPT Codex</b>를 설치하고, <b>각 회사의 공식 로그인 화면</b>에서 직접 로그인합니다. 프로그램은 비밀번호를 보거나 저장하지 않습니다.</p>
+  <ol class="steps">
+    <li>첫 화면 오른쪽 위 <b>연동 설정 열기</b>를 누릅니다.</li>
+    <li>쓰려는 쪽 탭(<b>Claude Code</b> 또는 <b>ChatGPT Codex</b>)을 고릅니다.</li>
+    <li>창 안의 <b>1 설치</b> 순서대로 합니다: Windows 키 → <code>PowerShell</code> 입력 → 열기 → 창의 <b>복사</b> 버튼으로 명령을 복사해 붙여 넣고 Enter.</li>
+    <li>설치가 끝나면 <b>설치 다시 확인</b>을 누릅니다.</li>
+    <li><b>2 본인 계정으로 로그인</b> 순서대로 로그인합니다. 브라우저에 회사 공식 로그인 화면이 뜹니다.</li>
+    <li>위쪽 칸이 초록색 "설치와 로그인이 끝났습니다"가 되면 <b>○○ 사용하기</b>를 누르고 닫습니다.</li>
+  </ol>
+  <div class="two">
+    <figure><img src="img/app-ai-claude.jpg" alt="Claude Code 설치 안내 창" loading="lazy"><figcaption>설치 전: "설치되어 있지 않습니다"(주황)</figcaption></figure>
+    <figure><img src="img/app-ai-codex.jpg" alt="ChatGPT Codex 연결 완료" loading="lazy"><figcaption>완료: "설치와 로그인이 끝났습니다"(초록)</figcaption></figure>
+  </div>
+  <p class="tip">첫 화면 위쪽 표시가 <b>● Claude Code 연결됨</b>(초록)으로 바뀌면 끝입니다. 주황색이면 아직 연결이 안 된 것입니다.</p>
+</section>
+
+<section id="s3">
+  <h2><span class="no">3</span>공시 키 받기 (DART) — 꼭 필요</h2>
+  <p>금융감독원 전자공시(OpenDART)의 무료 인증키입니다. 이 키가 있어야 '이슈 찾기'에서 오늘의 공시를 불러옵니다.</p>
+  <ol class="steps">
+    <li>프로그램 왼쪽 <b>설정</b> → <b>DART 인증키</b> 칸의 <b>인증키 발급받기</b>를 누르면 OpenDART 사이트가 열립니다.</li>
+    <li>사이트에서 <b>인증키 신청</b>을 하고, 이메일로 온 인증을 마치면 40자리 인증키가 나옵니다(무료).</li>
+    <li>인증키를 복사해 <b>DART 인증키</b> 칸에 붙여 넣고 <b>저장</b> → <b>연결 확인</b>을 누릅니다.</li>
+    <li>"연결 성공" 안내와 함께 <b>● 연결됨</b>이 나오면 끝입니다.</li>
+  </ol>
+  <figure><img src="img/app-settings.jpg" alt="설정 화면의 DART 인증키 칸" loading="lazy"><figcaption>설정 화면. 키를 넣기 전에는 "● 키 없음"으로 보입니다.</figcaption></figure>
+</section>
+
+<section id="s4">
+  <h2><span class="no">4</span>뉴스 키 받기 (네이버) — 선택</h2>
+  <p>'이슈 찾기 → 뉴스 화제' 탭과 공시 옆 "관련 뉴스 제목"에 씁니다. 없어도 공시 탭은 그대로 쓸 수 있습니다. 프로그램은 뉴스 <b>제목과 링크만</b> 보여 주고, 기사 문장을 영상에 넣지 않습니다.</p>
+  <ol class="steps">
+    <li>네이버 클라우드 플랫폼의 <b>NAVER API HUB</b>에 들어가 <b>신청하기</b>를 누릅니다(네이버 클라우드 가입 필요).
+      <figure><img src="img/nv-1-hub.jpg" alt="NAVER API HUB 첫 화면" loading="lazy"></figure></li>
+    <li>콘솔의 API HUB 화면에서 <b>+ Application 등록</b>을 누릅니다.
+      <figure><img src="img/nv-2-app.jpg" alt="Application 등록 버튼" loading="lazy"></figure></li>
+    <li>API 목록에서 <b>뉴스 (NAVER Search News API)</b>를 체크하고 <b>다음</b> → 이름을 넣어 등록합니다.
+      <figure><img src="img/nv-3-news.jpg" alt="API 선택 화면에서 뉴스 선택" loading="lazy"></figure></li>
+    <li>등록한 Application의 <b>Client ID</b>와 <b>Client Secret</b>을 프로그램 <b>설정 → 네이버 뉴스 검색 키</b>에 넣고 <b>저장</b> → <b>연결 확인</b>.</li>
+  </ol>
+  <div class="warn">신청 화면에서 <b>요금(무료 한도)과 이용 약관</b>을 꼭 확인해 주세요. 검색 API는 하루 호출 한도 안에서 무료로 안내되어 있습니다(2026년 11월 확인 기준).</div>
+</section>
+
+<section id="s5">
+  <h2><span class="no">5</span>시세 키 받기 (공공데이터포털) — 선택</h2>
+  <p>'이슈 찾기 → 전일 급등·급락' 탭에 씁니다. 시세는 실시간이 아니라 <b>다음 영업일 오후</b>에 올라오는 '전일' 자료입니다.</p>
+  <ol class="steps">
+    <li><a href="https://www.data.go.kr" target="_blank" rel="noopener">data.go.kr</a>에 가입·로그인합니다(무료).
+      <figure><img src="img/data-1-menu.jpg" alt="공공데이터포털 메뉴" loading="lazy"></figure></li>
+    <li>검색창에 <code>금융위원회_주식시세정보</code>를 찾아 <b>활용신청</b>을 누르고, 활용 목적을 적어 신청합니다. 보통 바로 승인됩니다.
+      <figure><img src="img/data-2-apply.jpg" alt="금융위원회_주식시세정보 활용신청" loading="lazy"></figure></li>
+    <li><b>마이페이지 → 데이터 활용 → Open API → 인증키 발급 현황</b>의 <b>일반 인증키</b>를 복사합니다(Encoding/Decoding 어느 것이든 됩니다).</li>
+    <li>프로그램 <b>설정 → 공공데이터포털 키</b>에 붙여 넣고 <b>저장</b> → <b>연결 확인</b>. 신청 직후에는 키가 동작하기까지 1시간쯤 걸릴 수 있습니다.</li>
+  </ol>
+  <div class="warn">이 자료는 <b>공공누리 제4유형</b>(출처표시·상업적 이용금지·변경금지)이고 "제3자 무단 제공 및 재배포 금지"가 붙어 있습니다. 그래서 영상에 시세 숫자를 넣는 스위치(<b>설정 → 시세 숫자 영상</b>)는 기본으로 꺼져 있습니다. 켜기 전에 조건을 꼭 읽어 주세요.</div>
+</section>
+
+<section id="s6">
+  <h2><span class="no">6</span>유튜브 연결</h2>
+  <p>구글 쪽 준비(프로젝트 등록)는 프로그램을 나눠 준 사람이 이미 해 두었습니다. 각자는 <b>로그인만</b> 하면 됩니다(1분).</p>
+  <ol class="steps">
+    <li>프로그램 <b>설정 → 유튜브 연결</b>의 <b>유튜브 연결하기</b>를 누릅니다.
+      <figure><img src="img/yt-1-button.jpg" alt="유튜브 연결하기 버튼" loading="lazy"></figure></li>
+    <li>브라우저에 구글 로그인 창이 열리면 <b>영상을 올릴 채널의 구글 계정</b>으로 로그인합니다.</li>
+    <li><b>"Google에서 확인하지 않은 앱"</b>이 나오면 정상입니다. 왼쪽의 작은 <b>계속</b>(또는 고급 → 이동)을 누르고, 다음 화면에서 <b>허용</b>합니다.
+      <figure><img src="img/yt-2-warning.jpg" alt="Google에서 확인하지 않은 앱 경고" loading="lazy"><figcaption>파란 "안전한 환경으로 돌아가기"가 아니라 왼쪽 "계속"을 누릅니다.</figcaption></figure></li>
+    <li>"유튜브 연결이 끝났습니다"가 나오면 창을 닫고 프로그램으로 돌아옵니다.
+      <figure><img src="img/yt-3-done.jpg" alt="유튜브 연결이 끝났습니다" loading="lazy"></figure></li>
+    <li>설정에 <b>● 연결됨</b>이 보이면 끝입니다.
+      <figure><img src="img/yt-4-connected.jpg" alt="유튜브 연결됨" loading="lazy"></figure></li>
+  </ol>
+  <div class="note"><b>알아 둘 점</b>
+    <ul>
+      <li>영상은 <b>비공개</b>로 올라갑니다(구글 규칙). 유튜브 스튜디오에서 확인한 뒤 <b>공개</b>로 바꿔 주세요.</li>
+      <li>표지(썸네일)는 자동으로 붙습니다. 단, 유튜브 <b>전화번호 인증</b>을 마친 채널만 됩니다(<a href="https://www.youtube.com/verify" target="_blank" rel="noopener">youtube.com/verify</a>).</li>
+    </ul>
+  </div>
+</section>
+
+<section id="s7">
+  <h2><span class="no">7</span>인스타그램·페이스북 연결</h2>
+  <p>메타 공식 API로 인스타그램 릴스와 페이스북 페이지 릴스에 올립니다. <b>연결 키 하나로 둘 다</b> 씁니다. 순서가 길지만 처음 한 번만 하면 됩니다(약 30분).</p>
+  <div class="warn">인스타그램·페이스북은 <b>바로 공개로 게시</b>됩니다. 프로그램이 올리기 전에 한 번 묻습니다.</div>
+
+  <h3>7-1. 계정 준비 (휴대폰 인스타그램·페이스북 앱에서)</h3>
+  <ol class="steps">
+    <li>인스타그램 앱 → 설정 → <b>프로페셔널 계정으로 전환</b> → <b>비즈니스</b>를 고릅니다(메뉴 이름은 앱 버전마다 조금 다릅니다).
+      <div class="two"><figure><img src="img/ig-1-pro.jpg" alt="비즈니스 선택" loading="lazy"></figure>
+      <figure><img src="img/ig-2-business.jpg" alt="Instagram Business 계정 완료" loading="lazy"></figure></div></li>
+    <li><b>페이스북 페이지</b>를 만듭니다(페이지 유형: <b>비즈니스</b>). PC에서 오류가 나면 <b>휴대폰 페이스북 앱</b>에서 만드는 것이 잘 됩니다.
+      <figure class="narrow"><img src="img/ig-3-pagetype.jpg" alt="페이지 유형 비즈니스" loading="lazy"></figure></li>
+    <li>인스타그램 앱 → 프로필 편집 → <b>페이지</b>에서 방금 만든 페이스북 페이지를 골라 <b>연결</b>합니다.
+      <figure class="narrow"><img src="img/ig-4-pagelink.jpg" alt="Facebook 페이지 연결" loading="lazy"></figure></li>
+  </ol>
+
+  <h3>7-2. 메타 개발자 앱 만들기 (PC 브라우저)</h3>
+  <ol class="steps">
+    <li><a href="https://developers.facebook.com" target="_blank" rel="noopener">developers.facebook.com</a>에 같은 페이스북 계정으로 들어가 오른쪽 위 <b>시작하기</b>를 누릅니다.
+      <figure><img src="img/dev-1-start.jpg" alt="Meta for Developers 첫 화면" loading="lazy"></figure></li>
+    <li><b>계속하기</b> → 계정 확인 → 연락처 → 역할(아무거나, 예: <b>기타</b>)을 고르고 <b>등록 완료</b>.
+      <div class="two"><figure><img src="img/dev-2-register.jpg" alt="개발자 계정 만들기" loading="lazy"></figure>
+      <figure><img src="img/dev-3-role.jpg" alt="역할 선택" loading="lazy"></figure></div></li>
+    <li><b>내 앱 → 앱 만들기</b>. 이용 사례에서 <b>기타</b>를 고르고 <b>다음</b>, 유형은 <b>비즈니스</b>.
+      <figure><img src="img/dev-4-usecase.jpg" alt="이용 사례 기타" loading="lazy"></figure></li>
+    <li>앱 이름(예: <code>AI Shorts Factory</code>)과 내 이메일을 넣고 <b>앱 만들기</b>.
+      <figure><img src="img/dev-5-appinfo.jpg" alt="앱 이름 입력" loading="lazy"></figure></li>
+    <li>"추가할 수 있는 제품"에서 <b>Instagram</b>의 <b>설정</b>을 누릅니다.
+      <figure><img src="img/dev-6-products.jpg" alt="제품 추가에서 Instagram 설정" loading="lazy"></figure></li>
+    <li>왼쪽 Instagram 아래 <b>Facebook 로그인이 포함된 API 설정</b>을 고릅니다. 앱은 <b>개발 모드</b> 그대로 둡니다(심사 필요 없음).
+      <figure><img src="img/dev-7-fblogin.jpg" alt="Facebook 로그인이 포함된 API 설정" loading="lazy"></figure></li>
+  </ol>
+
+  <h3>7-3. 연결 키 만들기 (그래프 API 탐색기)</h3>
+  <ol class="steps">
+    <li><a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener">그래프 API 탐색기</a>를 엽니다. 오른쪽 <b>Meta 앱</b>에서 방금 만든 앱을 고르고, <b>사용자 또는 페이지</b>는 <b>사용자 토큰</b>을 고릅니다.
+      <figure class="narrow"><img src="img/tok-1-add.jpg" alt="그래프 API 탐색기 오른쪽 칸" loading="lazy"></figure></li>
+    <li><b>Permissions → 권한 추가 ▼</b>에서 아래 <b>6개</b>를 모두 넣습니다. 묶음 이름 옆 <b>&gt;</b>를 눌러야 펼쳐집니다.
+      <ul>
+        <li><b>Events Groups Pages</b> 묶음: <code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>pages_manage_posts</code>, <code>business_management</code></li>
+        <li><b>Other</b> 묶음: <code>instagram_basic</code>, <code>instagram_content_publish</code></li>
+      </ul>
+      <div class="two"><figure><img src="img/tok-2-list.jpg" alt="Events Groups Pages 펼친 목록" loading="lazy"></figure>
+      <figure><img src="img/tok-3-chosen.jpg" alt="권한을 넣은 모습" loading="lazy"><figcaption>사진은 5개 상태입니다. <code>pages_manage_posts</code>까지 6개를 넣어 주세요(페이스북 페이지용).</figcaption></figure></div></li>
+    <li><b>Generate Access Token</b>을 누르면 메타 창이 뜹니다. 내 <b>페이지</b>와 <b>인스타그램 계정</b>을 고르고 <b>계속</b> → <b>저장</b>.
+      <div class="two"><figure><img src="img/tok-4-pages.jpg" alt="페이지 선택" loading="lazy"></figure>
+      <figure><img src="img/tok-5-review.jpg" alt="액세스 요청 검토" loading="lazy"></figure></div></li>
+    <li>위쪽 <b>액세스 토큰</b> 칸의 긴 글자를 복사 아이콘으로 복사합니다. 이 키는 약 1시간짜리입니다.</li>
+  </ol>
+
+  <h3>7-4. 60일짜리로 늘리기</h3>
+  <ol class="steps">
+    <li><a href="https://developers.facebook.com/tools/debug/accesstoken/" target="_blank" rel="noopener">액세스 토큰 디버거</a>를 열고, 복사한 키를 붙여 넣어 <b>디버그</b>를 누릅니다.</li>
+    <li>맨 아래 <b>액세스 토큰 확장</b>을 누르고, 새로 나온 키를 복사합니다.
+      <div class="warn">이 화면은 캡처해서 남에게 보내지 마세요. 새 키가 그대로 보입니다.</div></li>
+  </ol>
+
+  <h3>7-5. 프로그램에 넣기</h3>
+  <ol class="steps">
+    <li>프로그램 <b>설정 → 인스타그램·페이스북 연결</b> 칸에 붙여 넣고 <b>연결</b>을 누릅니다.</li>
+    <li><b>● 연결됨</b>과 내 인스타그램 아이디가 나오고, "페이스북 페이지(…)에도 릴스를 올릴 수 있습니다"가 보이면 끝입니다. 프로그램은 이 키로 만료일 없는 페이지 키를 받아 안전한 곳(Windows 자격 증명 관리자)에 저장합니다.</li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="no">8</span>첫 영상 만들고 올리기</h2>
+  <ol class="steps">
+    <li>왼쪽 <b>이슈 찾기</b> → <b>공시</b> 탭에서 날짜를 고르고 <b>공시 불러오기</b>. 점수가 높은 공시가 위에 나옵니다.
+      <ul><li><b>뉴스 화제</b> 탭: 낱말(예: 수주, 실적)을 넣고 <b>뉴스 찾기</b> → 회사를 고르면 그 회사의 최근 7일 공시로 만듭니다.</li>
+      <li><b>전일 급등·급락</b> 탭: <b>시세 불러오기</b> → 회사를 고릅니다.</li></ul></li>
+    <li>공시를 하나 고르고 <b>이 이슈로 영상 만들기</b>를 누르면 'AI 쇼츠 만들기' 화면으로 내용이 넘어갑니다.</li>
+    <li><b>AI로 대본 쓰기</b>를 누릅니다. 1~2분 기다리면 대본이 채워집니다. AI는 공시에 있는 숫자만 쓰고, 지어낸 숫자나 투자 권유는 자동으로 걸러집니다.</li>
+    <li>아래 <b>템플릿</b>(17종) 중 하나를 고르거나 <b>AI 디자인</b>을 고릅니다. 오른쪽 미리보기로 바로 확인할 수 있습니다. 목소리·배경음악·영상 길이도 여기서 고릅니다.</li>
+    <li><b>영상 파일로 저장 (MP4)</b>을 누릅니다. PC에 따라 1~2분쯤 걸립니다. 표지(썸네일)도 자동으로 만들어져 영상 옆에 <code>-표지.jpg</code>로 저장됩니다.</li>
+    <li>저장이 끝나면 나오는 창에서 <b>유튜브에 올리기 · 인스타그램에 올리기 · 페이스북에 올리기</b>를 누릅니다. 미리 <b>저장 후 ○○ 업로드</b> 스위치를 켜 두면 저장하자마자 올라갑니다. 제목·설명·해시태그는 자동으로 들어갑니다.</li>
+    <li>틱톡·스레드·X 같은 다른 SNS는 <b>다른 SNS에 올리기</b>(업로드 도우미)로 문구 복사 + 업로드 화면 열기를 도와줍니다(직접 게시).</li>
+  </ol>
+  <p class="tip">하나가 실패해도 결과 창의 <b>실패한 곳만 다시 올리기</b>로 그곳만 다시 올릴 수 있습니다.</p>
+</section>
+
+<section id="s9">
+  <h2><span class="no">9</span>설정 알아두기</h2>
+  <dl class="defs">
+    <dt>목소리</dt><dd>10가지 목소리 + '무작위' + '내레이션 없음'. 이름 옆 <b>▷</b>로 미리 들을 수 있습니다. AI 목소리를 쓰면 화면의 'AI 제작' 표시는 끌 수 없습니다(목소리 모델 사용 조건).</dd>
+    <dt>자막</dt><dd>기본 / 굵게 / 끔. 목소리가 없으면 자막도 없습니다.</dd>
+    <dt>표지(썸네일)</dt><dd>소식 종류와 영상 밝기에 맞춰 16가지 모양 중에서 자동으로 고릅니다. 설정 스위치로 끌 수 있습니다.</dd>
+    <dt>사이트 홍보</dt><dd>이름·주소·한 줄 소개·해시태그를 한 번 넣으면 영상 마지막 장면과 업로드 글에 자동으로 붙습니다. 주소가 비어 있으면 아무것도 붙지 않습니다.</dd>
+    <dt>시세 숫자 영상</dt><dd>기본 꺼짐. 켤 때 이용 조건 확인 창이 뜹니다. 사이트 홍보 주소가 있으면 켜 두어도 시세 숫자를 쓰지 않습니다.</dd>
+    <dt>영상 저장 폴더</dt><dd>만든 영상이 저장되는 곳. <b>폴더 열기</b>로 바로 열 수 있습니다.</dd>
+  </dl>
+</section>
+
+<section id="s10">
+  <h2><span class="no">10</span>막힐 때 (실제로 자주 막힌 곳)</h2>
+  <div class="faq">
+    <details><summary>위쪽에 "Claude Code 설치 필요"(주황색)가 계속 떠요</summary>
+      <p><b>연동 설정 열기</b>에서 설치(1)와 로그인(2)을 모두 했는지 확인하고 <b>설치 다시 확인</b>을 누르세요. 그래도 그대로면 프로그램을 껐다 켜 보세요.</p></details>
+    <details><summary>새벽에 공시를 불러왔는데 아무것도 없어요</summary>
+      <p>공시는 보통 평일 낮에 올라옵니다. 새벽·주말·공휴일에는 거의 없습니다. 날짜를 <b>전 영업일</b>로 바꿔 불러오세요.</p></details>
+    <details><summary>"대본을 만들지 못했습니다"가 나와요</summary>
+      <p>대부분 목소리 문장이 장면보다 길 때입니다. <b>영상 길이를 조금 늘리고</b>(예: 30초 → 32초) <b>AI로 대본 쓰기</b>를 다시 누르세요. 공시 내용이 너무 짧아도 실패할 수 있습니다.</p></details>
+    <details><summary>'유튜브 연결하기'를 눌렀는데 버튼이 회색으로 멈췄어요</summary>
+      <p>브라우저의 구글 로그인 창에서 로그인과 허용을 끝까지 했는지 확인하세요. 1분이 지나도 그대로면 프로그램을 껐다 켜고 다시 누르세요.</p></details>
+    <details><summary>유튜브에 올렸는데 '비공개'예요</summary>
+      <p>정상입니다(구글 규칙). 유튜브 스튜디오에서 확인하고 <b>공개</b>로 바꿔 주세요.</p></details>
+    <details><summary>유튜브 표지가 안 바뀌어요</summary>
+      <p>채널의 <b>전화번호 인증</b>이 필요합니다: <a href="https://www.youtube.com/verify" target="_blank" rel="noopener">youtube.com/verify</a></p></details>
+    <details><summary>페이스북 페이지를 만들 때 "오류가 발생했습니다"가 떠요</summary>
+      <p>PC 브라우저에서 자주 생깁니다. <b>휴대폰 페이스북 앱</b>에서 페이지를 만들면 잘 됩니다.</p></details>
+    <details><summary>메타에서 "Can not update your business info"가 떠요 (연락처 정보 검토)</summary>
+      <p>창 아래 <b>연락처 정보 사용 안 함</b>을 눌러 넘어가 보세요. 프로그램 연결에는 이 연락처 정보가 필요하지 않습니다.</p></details>
+    <details><summary>그래프 API 탐색기에서 "사용할 수 있는 구성 없음"이 보여요</summary>
+      <p>무시해도 됩니다. 권한 6개를 모두 넣으면 <b>Generate Access Token</b> 버튼이 진해지고 누를 수 있습니다.</p></details>
+    <details><summary>'토큰 연장' 버튼이 안 보여요</summary>
+      <p>탐색기가 아니라 <a href="https://developers.facebook.com/tools/debug/accesstoken/" target="_blank" rel="noopener">액세스 토큰 디버거</a>에서 합니다. 키를 붙여 넣고 디버그 → 맨 아래 <b>액세스 토큰 확장</b>.</p></details>
+    <details><summary>인스타그램 칸에 "● 다시 연결 필요"가 떠요</summary>
+      <p>연결 키가 만료됐거나 비밀번호를 바꾼 경우입니다. 7-3 ~ 7-5를 다시 하면 됩니다. 안내 끝 괄호에 메타가 알려 준 이유가 함께 나옵니다.</p></details>
+    <details><summary>인스타그램만 "영상 보내기" 단계에서 실패해요</summary>
+      <p>메타 쪽에서 가끔 생기는 일입니다(같은 영상이 페이스북에는 올라감). 몇 분 뒤 결과 창의 <b>실패한 곳만 다시 올리기</b>를 누르세요.</p></details>
+    <details><summary>"권한" 오류가 나와요 (인스타·페이스북)</summary>
+      <p>7-3에서 권한 6개를 모두 넣었는지, 키를 만들 때 <b>페이지와 인스타그램 계정을 선택</b>했는지 확인하고 키를 다시 만드세요.</p></details>
+    <details><summary>새 버전을 받았는데 연결이 다 풀렸어요</summary>
+      <p>연결 정보는 PC에 따로 저장되어 새 버전에도 남습니다. 다른 PC로 옮겼다면 그 PC에서 다시 연결해야 합니다.</p></details>
+  </div>
+</section>
+
+<section id="s11">
+  <h2><span class="no">11</span>꼭 지켜 주세요 (안전 수칙)</h2>
+  <ul class="rules">
+    <li><b>키·연결 키·비밀번호는 채팅이나 메일에 붙여 넣지 마세요.</b> 프로그램 설정 칸에만 넣습니다. 캡처할 때도 가려 주세요.</li>
+    <li>프로그램은 비밀번호를 받지 않습니다. 로그인은 늘 각 회사의 <b>공식 화면</b>에서 합니다.</li>
+    <li>영상에는 투자 유의 문구와 'AI 제작' 표시가 항상 들어갑니다. 투자 권유 영상이 아닙니다.</li>
+    <li>받은 프로그램 파일을 다른 사람에게 다시 나눠 주지 마세요(지인 전용).</li>
+  </ul>
+  <p class="muted">더 궁금한 점은 프로그램을 나눠 준 사람에게 물어보세요. · <a href="../">오늘의주식 쇼츠 소개</a> · <a href="../privacy.html">개인정보처리방침</a> · <a href="../terms.html">이용약관</a></p>
+</section>
+</main>
+
+<div id="zoom" hidden><img alt=""></div>
+<script>
+  // 사진을 누르면 크게 보기
+  var z = document.getElementById("zoom"), zi = z.querySelector("img");
+  document.querySelectorAll("figure img").forEach(function (im) {
+    im.addEventListener("click", function () { zi.src = im.src; zi.alt = im.alt; z.hidden = false; });
+  });
+  z.addEventListener("click", function () { z.hidden = true; });
+</script>
+</body></html>
