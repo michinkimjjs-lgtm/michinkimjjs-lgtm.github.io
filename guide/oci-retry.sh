@@ -6,7 +6,8 @@
 # - 비밀값을 저장하거나 밖으로 보내지 않음. 공개 키(.pub)만 받음.
 set -uo pipefail
 NAME="shorts-server"
-WAIT=90          # 시도 사이 쉬는 초(너무 자주 하면 오라클이 막음)
+WAIT=60          # 한 바퀴(3가지 크기) 뒤 쉬는 초
+GAP=30           # 크기 사이 쉬는 초(너무 붙여 시도하면 오라클이 "너무 자주"로 막음)
 SHAPES=("4 24" "2 12" "1 6")
 
 say() { echo "[$(date '+%m-%d %H:%M:%S')] $*"; }
@@ -67,7 +68,7 @@ IMG=$(oci compute image list -c "$T" --operating-system "Canonical Ubuntu" --ope
       --query "data[?!contains(\"display-name\", 'Minimal')] | [0].id" --raw-output)
 AD=$(oci iam availability-domain list -c "$T" --query 'data[0].name' --raw-output)
 if [ -z "$IMG" ] || [ "$IMG" = "null" ] || [ -z "$AD" ]; then say "Ubuntu 24.04 이미지나 지역 정보를 찾지 못했습니다."; exit 1; fi
-say "이미지·지역 확인 완료. 자리가 날 때까지 ${WAIT}초마다 시도합니다(멈추려면 Ctrl+C)."
+say "이미지·지역 확인 완료. 자리가 날 때까지 계속 시도합니다(멈추려면 Ctrl+C)."
 
 # ---- 6. 자리가 날 때까지 ----
 try=0
@@ -96,7 +97,7 @@ while true; do
       *)
         say "예상 못 한 오류라 멈춥니다. 아래 내용을 캡처해서 보내 주세요:"; echo "$OUT" | tail -5; exit 1 ;;
     esac
-    sleep 5
+    sleep "$GAP"
   done
   sleep "$WAIT"
 done
