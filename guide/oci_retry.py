@@ -18,8 +18,8 @@ from pathlib import Path
 NAME = "shorts-server"
 SHAPE = "VM.Standard.A1.Flex"
 SIZES = [(4, 24), (2, 12), (1, 6)]
-GAP = 30      # 크기 사이 쉬는 초
-WAIT = 60     # 한 바퀴 뒤 쉬는 초
+GAP = 70      # 크기 사이 쉬는 초(오라클이 1분 안에 두 번 만들기를 "너무 자주"로 막음, 2026-11-27 기록 확인)
+WAIT = 70     # 한 바퀴 뒤 쉬는 초
 HOME = Path.home()
 OCI_DIR = HOME / ".oci"
 CONFIG = OCI_DIR / "config"
